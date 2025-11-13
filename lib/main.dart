@@ -32,11 +32,29 @@ class _MyHomePageState extends State<MyHomePage> {
   String? _errorMessage;
   StreamSubscription<Position>? _positionStream;
   String? _currentAddress;
+  String? distanceToPNB;
+
+  // lokasi awal/a
+  final double _pnbLatitude = -8.29542;
+  final double _pnbLongitude = 114.30793;
 
   @override
   void dispose() {
     _positionStream?.cancel();
     super.dispose();
+  }
+
+  void _calculateDistanceToPNB(Position position) {
+    double distanceInMeters = Geolocator . distanceBetween (
+      _pnbLatitude,
+      _pnbLongitude,
+      position.latitude,
+      position.longitude,
+    );
+
+    setState(() {
+      distanceToPNB = "${distanceInMeters.toStringAsFixed(2)} meter";
+    });
   }
 
   Future<Position> _getPermissionAndLocation() async {
@@ -87,6 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
         
       });
       await _getAddressFromLatLng(_currentPosition!);
+      _calculateDistanceToPNB(position);
     } catch (e) {
       setState(() {
         _errorMessage = e.toString();
@@ -114,6 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
               
             });
             await _getAddressFromLatLng(position);
+            _calculateDistanceToPNB(position);
           });
     } catch (e) {
       setState(() {
@@ -202,7 +222,21 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Text("Alamat: $_currentAddress",
                           textAlign: TextAlign.center,
                           style: const TextStyle(fontSize: 16),
-                          ))
+                          ),
+                        ),
+
+                          if (distanceToPNB != null)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text("Jarak ke PNB $distanceToPNB",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 ),
