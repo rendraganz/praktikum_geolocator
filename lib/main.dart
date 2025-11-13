@@ -52,8 +52,12 @@ class _MyHomePageState extends State<MyHomePage> {
       position.longitude,
     );
 
+    // setState(() {
+    //   distanceToPNB = "${distanceInMeters.toStringAsFixed(2)} meter";
+    // });
+
     setState(() {
-      distanceToPNB = "${distanceInMeters.toStringAsFixed(2)} meter";
+      distanceToPNB = "${(distanceInMeters / 1000).toStringAsFixed(2)} km";
     });
   }
 

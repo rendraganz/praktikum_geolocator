@@ -49,4 +49,11 @@ Saya ambil latitude dan longitude dari Poliwangi.
 - Versi Meter
 ![Versi meter](media/ui_meter.jpg)
 
+- Versi KiloMeter
+Ubah pada bagian setState
+![new state](media/set_km.png)
+
+Hasilnya
+![Versi km](media/ui_km.jpg)
+
 
