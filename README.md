@@ -32,11 +32,11 @@ Manfaatkan fungsi Geolocator.distanceBetween dari Langkah 4.
 1. Buat variabel String? distanceToPNB; di MyHomePageState.
 ![variabel distanceToPNB](media/var_latlong.png)
 
-Saya ambil latitude dan longitude dari Poliwangi.
+- Saya ambil latitude dan longitude dari Poliwangi.
 ![latlong poliwangi](media/latlong_poli.png)
 
 2. Di dalam startTracking (di dalam .listen()), panggil fungsi untuk menghitung jarak:
-1[panggil fungsi dilisten](media/panggil_listen.png)
+![panggil fungsi dilisten](media/panggil_listen.png)
 
 
 3. Simpan hasilnya di distanceToPNB menggunakan setState. (Dalam bentuk meter).
@@ -53,7 +53,10 @@ Saya ambil latitude dan longitude dari Poliwangi.
 Ubah pada bagian setState
 ![new state](media/set_km.png)
 
-Hasilnya
+- Hasilnya
 ![Versi km](media/ui_km.jpg)
+
+- Posisi saya (warkop setia kawan)
+![titik awal](media/titik_awal.jpg)
 
 
